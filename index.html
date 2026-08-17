@@ -93,6 +93,10 @@
     animation: cta-pop 2.6s ease-in-out infinite, globe-glow-pulse 2.6s ease-in-out infinite;
   }
   .mobile-toggle.globe-glow { border-radius: 50%; }
+  /* phone-width visitors skip the rolling-globe intro entirely (see initNavGlobeIntro) and
+     just get the plain pulse on the hamburger, no glow — the glow's box-shadow bloom reads
+     as an alert/notification badge at that size, which isn't the intent, just a nudge */
+  .mobile-toggle.nav-pulse { animation: cta-pop 2.6s ease-in-out infinite; }
   nav.site .cta:hover { background: var(--uf-orange); animation-play-state: paused; box-shadow: none; }
   @keyframes globe-glow-pulse {
     0%, 100% {
@@ -108,7 +112,7 @@
     16% { transform: scale(1); }
   }
   @media (prefers-reduced-motion: reduce){
-    nav.site .cta.globe-glow, .mobile-toggle.globe-glow { animation: none; }
+    nav.site .cta.globe-glow, .mobile-toggle.globe-glow, .mobile-toggle.nav-pulse { animation: none; }
   }
 
   .globe-svg circle { fill: var(--globe-blue); }
@@ -145,7 +149,7 @@
 
   @media (max-width: 1180px) {
     nav.site { padding: calc(1rem + 20px) 1.25rem 1rem; flex-wrap: wrap; }
-    nav.site ul { display: none; width: 100%; flex-direction: column; gap: 0.4rem; align-items: flex-start; padding-top: 1rem; border-top: 1px solid var(--line); margin-top: 0.8rem; }
+    nav.site ul { display: none; width: 100%; flex-direction: column; gap: 1.1rem; align-items: flex-start; padding-top: 1rem; border-top: 1px solid var(--line); margin-top: 0.8rem; }
     nav.site ul.open { display: flex; }
     .mobile-toggle { display: block; }
   }
@@ -173,7 +177,7 @@
   }
   .hero h1 .accent { color: var(--uf-orange); font-style: normal; font-weight: 600; }
   .hero p.lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 36rem; margin-bottom: 2.5rem; }
-  .hero .buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
     padding: 0.85rem 1.75rem; border-radius: 999px; font-weight: 600;
     text-decoration: none; font-size: 0.82rem; transition: all 0.2s;
@@ -2063,6 +2067,15 @@ function initNavGlobeIntro(){
   if (!nav || !brandGlobe || !cta) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // phone-width visitors skip the whole rolling-globe intro (no room for the flight path,
+  // and the animation is really a desktop/tablet flourish) — just pulse the hamburger,
+  // no glow, so there's still a nudge toward the menu without the alert-badge look
+  if (window.innerWidth < 640) {
+    if (mobileToggle && !reduced) mobileToggle.classList.add('nav-pulse');
+    return;
+  }
+
   const alreadyPlayed = sessionStorage.getItem('sapaNavIntroPlayed');
 
   const GLOBE_SVG =
