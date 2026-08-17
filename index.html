@@ -815,6 +815,12 @@
   /* ========== ADDED v2: full-width map + represented-only states ========== */
 
   .map-wide { max-width: 1280px; margin: 2.25rem auto 0; padding: 0 2rem; }
+  /* on phone widths, put the "Meet a SAPA" title ahead of the "three things" box so it's
+     immediately clear what page you're on — everything else keeps its normal order */
+  @media (max-width: 640px){
+    .page-advisors { display: flex; flex-direction: column; }
+    .page-advisors > .page-hero { order: -1; }
+  }
   /* the interactive map is genuinely hard to use on a narrow screen (small pins, precise
      taps) — nudge phone-width visitors toward a computer instead of hiding the map itself */
   .mobile-map-note { display: none; }
@@ -1332,7 +1338,11 @@ const pages = {
           <p>Every pin is a place a current SAPA has studied. Click the map to meet the SAPAs who've been there.</p>
         </div>
         <a href="#/advisors" class="home-map-card" data-link aria-label="Open the interactive SAPA map">
-          ${WORLD_MAP_SVG.replace('__MAPCLASS__','world-map-static').replace('</svg>', renderMapPins() + '</svg>')}
+          ${WORLD_MAP_SVG.replace('__MAPCLASS__','world-map-static').replace('</svg>', renderMapPins(true) + renderMapAmbient() + '</svg>')}
+          <div class="map-key">
+            <span class="map-key-item"><span class="map-key-dot sapa"></span>SAPA</span>
+            <span class="map-key-item"><span class="map-key-dot alumni"></span>SAPA Alumni</span>
+          </div>
           <div class="cap">
             <span class="go">Open the interactive map →</span>
           </div>
@@ -1389,7 +1399,7 @@ const pages = {
   `,
 
   advisors: () => `
-    <div class="page">
+    <div class="page page-advisors">
       <div class="prep">
         <div class="prep-inner">
           <h2>Three things worth doing first.</h2>
@@ -1423,7 +1433,7 @@ const pages = {
       </section>
 
       <div class="map-wide">
-        <p class="mobile-map-note">Pst, we noticed you might be on a phone. To get the best experience we recommend a computer.</p>
+        <p class="mobile-map-note">Pst, the interactive map works better on a computer.</p>
         <div class="map-frame-full">
           ${WORLD_MAP_SVG.replace('__MAPCLASS__','world-map-real').replace('</svg>', renderMapPins(true) + renderMapAmbient() + '</svg>')}
           <button id="map-reset-all" class="active">All SAPAs</button>
@@ -1640,7 +1650,7 @@ function render() {
   if (hash === 'advisors' || hash === '') { /* no-op */ }
   if (hash === 'advisors') initAdvisorsPage();
   if (hash === 'alumni') initAlumniPage();
-  if (hash === '' || hash === 'home') initHomeVideo();
+  if (hash === '' || hash === 'home') { initHomeVideo(); initMapAmbient(); }
 
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
@@ -1792,12 +1802,13 @@ function renderMapAmbient(){
 // for each animation to fully finish before starting the next, with a short random pause
 // between — so only one wave is ever visible, in a randomized, non-repeating-per-lap order.
 // the scheduler itself doesn't start until the map has actually been scrolled into view —
-// an IntersectionObserver on the map frame fires it once, then disconnects.
+// an IntersectionObserver on the map frame fires it once, then disconnects — and waits a
+// further six seconds of viewing before the first wave plays, on both map instances.
 function initMapAmbient(){
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const lines = Array.from(document.querySelectorAll('.map-ambient .amb-line'));
   if (!lines.length) return;
-  const frame = document.querySelector('.map-frame-full');
+  const frame = document.querySelector('.map-frame-full, .home-map-card');
   let order = [];
   let lastIdx = -1;
   function shuffle(arr){
@@ -1827,7 +1838,7 @@ function initMapAmbient(){
       setTimeout(playNext, 2000 + Math.random() * 2500);
     });
   }
-  function start(){ setTimeout(playNext, 800); }
+  function start(){ setTimeout(playNext, 6000); }
   if (!frame || typeof IntersectionObserver === 'undefined'){ start(); return; }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
