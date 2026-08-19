@@ -7,7 +7,7 @@
 <meta name="description" content="University of Florida Study Abroad Peer Advisors. Student-to-student advising on programs, applications, finances, and life abroad." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 
   :root {
@@ -158,6 +158,38 @@
   main { min-height: 60vh; }
   .page { animation: fadeIn 0.4s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ---------- post-it alert (home page only) ---------- */
+  .postit-alert {
+    position: fixed; top: 100px; right: 2rem; z-index: 90;
+    width: 210px; padding: 1.5rem 1.5rem 1.75rem;
+    background: #FFE566; box-shadow: 5px 9px 20px rgba(0,0,0,0.28);
+    transform: rotate(-5deg); transition: transform 0.2s;
+    animation: postit-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: 0.3s;
+  }
+  .postit-alert:hover { transform: rotate(-1deg) scale(1.04); }
+  .postit-alert.postit-dismissed { display: none; }
+  .postit-alert a {
+    display: block; font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.5rem;
+    line-height: 1.15; color: #2b2500; text-decoration: none;
+  }
+  .postit-close {
+    position: absolute; top: 0.3rem; right: 0.6rem; background: none; border: none;
+    color: rgba(43,37,0,0.45); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0.2rem;
+  }
+  .postit-close:hover { color: rgba(43,37,0,0.8); }
+  @keyframes postit-pop {
+    0% { opacity: 0; transform: rotate(-5deg) scale(0.5); }
+    100% { opacity: 1; transform: rotate(-5deg) scale(1); }
+  }
+  @media (max-width: 640px){
+    .postit-alert { top: auto; bottom: 1.25rem; right: 1.25rem; width: 170px; padding: 1.2rem 1.2rem 1.4rem; }
+    .postit-alert a { font-size: 2rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .postit-alert { animation: none; }
+  }
 
   /* ---------- hero ---------- */
   .hero {
@@ -1306,6 +1338,10 @@ const pages = {
 
   home: () => `
     <div class="page">
+      <div class="postit-alert" role="note">
+        <button class="postit-close" aria-label="Dismiss" onclick="this.closest('.postit-alert').classList.add('postit-dismissed')">&times;</button>
+        <a href="#/join" data-link>Applications<br>open now!</a>
+      </div>
       <section class="home-visual-band">
         <div class="hvb-logo">
           <div class="hvb-inner">
