@@ -851,6 +851,7 @@
      immediately clear what page you're on — everything else keeps its normal order */
   @media (max-width: 640px){
     .page-advisors { display: flex; flex-direction: column; }
+    .page-advisors > .oh-ticker { order: -2; }
     .page-advisors > .page-hero { order: -1; }
   }
   /* the interactive map is genuinely hard to use on a narrow screen (small pins, precise
@@ -1059,6 +1060,27 @@
   @media (max-width: 600px){
     .lang-ticker-item { font-size: 0.85rem; padding: 0 1.1rem; }
     .lang-ticker-sep { margin-left: 1.1rem; }
+  }
+
+  /* ========== scrolling office-hours announcement (Meet a SAPA page) ========== */
+  .oh-ticker {
+    width: 100%; overflow: hidden; background: var(--uf-orange);
+    padding: 0.7rem 0; position: relative;
+  }
+  .oh-ticker-track { display: flex; width: max-content; animation: lang-ticker-scroll 28s linear infinite; }
+  .oh-ticker:hover .oh-ticker-track { animation-play-state: paused; }
+  .oh-ticker-item {
+    display: inline-flex; align-items: center; white-space: nowrap;
+    font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 0.03em;
+    text-transform: uppercase; font-size: 0.9rem; color: #fff; padding: 0 1.75rem;
+  }
+  .oh-ticker-sep { color: var(--uf-blue); margin-left: 1.75rem; font-size: 0.8rem; }
+  @media (max-width: 600px){
+    .oh-ticker-item { font-size: 0.8rem; padding: 0 1.1rem; }
+    .oh-ticker-sep { margin-left: 1.1rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .oh-ticker-track { animation: none; }
   }
 
   .whatwedo { padding-top: 4.5rem; }
@@ -1301,6 +1323,13 @@ function langTicker(){
   ).join('');
   return '<div class="lang-ticker"><div class="lang-ticker-track">' + items + items + '</div></div>';
 }
+// repeats the message enough times to tile smoothly at any width, then duplicates that
+// whole run once (same seamless-loop technique as langTicker) so the scroll never gaps
+function officeHoursTicker(message){
+  const one = '<span class="oh-ticker-item">' + esc(message) + '<span class="oh-ticker-sep">&#10022;</span></span>';
+  const run = one.repeat(8);
+  return '<div class="oh-ticker"><div class="oh-ticker-track">' + run + run + '</div></div>';
+}
 function advisorBySlug(slug){ return advisors.find(a => a.slug === slug); }
 
 // short program label for tiles (first program, trimmed)
@@ -1439,6 +1468,7 @@ const pages = {
 
   advisors: () => `
     <div class="page page-advisors">
+      ${officeHoursTicker('Office hours will begin Thursday, August 27th')}
       <div class="prep">
         <div class="prep-inner">
           <h2>Three things worth doing first.</h2>
