@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Page not found — UF SAPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --uf-orange: #FA4616;
+    --uf-blue: #0021A5;
+    --uf-blue-deep: #001A82;
+    --globe-blue: #1C6DD0;
+    --globe-green: #2FA64F;
+    --uf-cream: #FFFFFF;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A4A;
+    --line: rgba(0, 33, 165, 0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--uf-cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  main { flex: 1; }
+
+  /* ---------- nav ---------- */
+  nav.site {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--uf-cream);
+    border-bottom: 3px solid var(--uf-orange);
+    padding: 1.1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  nav.site .brand {
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem;
+    color: var(--uf-blue); letter-spacing: -0.01em;
+    text-decoration: none; display: flex; align-items: baseline; gap: 0.4rem;
+  }
+  nav.site .brand .brand-globe {
+    display: inline-block; width: 0.62em; height: 0.62em; flex: none;
+    transform: translateY(0.05em); border-radius: 50%; overflow: hidden;
+  }
+  nav.site .brand .brand-globe svg { width: 100%; height: 100%; display: block; }
+  .globe-svg circle { fill: var(--globe-blue); }
+  .globe-svg .land { fill: var(--globe-green); }
+  nav.site ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav.site a.page-link {
+    color: var(--ink); text-decoration: none; font-size: 0.8rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.3rem 0; transition: color 0.2s;
+  }
+  nav.site a.page-link:hover { color: var(--uf-orange); }
+  nav.site .cta {
+    background: var(--uf-blue); color: white; padding: 0.55rem 1.2rem;
+    border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    text-decoration: none; transition: background 0.2s;
+  }
+  nav.site .cta:hover { background: var(--uf-orange); }
+  @media (max-width: 700px) {
+    nav.site ul { display: none; }
+  }
+
+  /* ---------- error hero ---------- */
+  .page-hero {
+    padding: 4.5rem 2rem 3rem; max-width: 1280px; margin: 0 auto;
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  .page-hero .eyebrow {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.15em; font-size: clamp(1.3rem, 3vw, 1.7rem);
+    color: var(--uf-orange); margin-bottom: 1.5rem;
+  }
+  .page-hero h1 {
+    font-family: 'Oswald', sans-serif; font-weight: 500;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin-bottom: 1.25rem; letter-spacing: -0.02em;
+  }
+  .page-hero p.lede {
+    font-size: 1.05rem; color: var(--ink-soft);
+    max-width: 34rem; margin: 0 auto 2.5rem;
+  }
+  .buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    padding: 0.85rem 1.75rem; border-radius: 999px; font-weight: 600;
+    text-decoration: none; font-size: 0.82rem; transition: all 0.2s;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--uf-orange); color: white; }
+  .btn-primary:hover { background: var(--uf-blue); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--uf-blue); border: 2px solid var(--uf-blue); }
+  .btn-ghost:hover { background: var(--uf-blue); color: white; }
+
+  /* ---------- footer ---------- */
+  footer {
+    background: var(--uf-blue); border-top: 4px solid var(--uf-orange);
+    padding: 3rem 2rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+  }
+  footer .brand { font-family: 'Playfair Display', serif; font-weight: 700; color: white;
+    font-size: 2.6rem; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  footer .brand .dot { color: var(--uf-orange); font-style: italic; }
+  footer h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--uf-orange); margin-bottom: 1rem; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 0.5rem; color: rgba(255,255,255,0.75); font-size: 0.92rem; }
+  footer a { color: rgba(255,255,255,0.88); text-decoration: none; font-size: 0.92rem; }
+  footer a:hover { color: var(--uf-orange); }
+  .footer-bottom { max-width: 1280px; margin: 2.5rem auto 0; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.18); display: flex; justify-content: space-between;
+    font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+  @media (max-width: 820px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <a href="/" class="brand">UF Study Abroad Peer Advisors<span class="brand-globe" aria-hidden="true"><svg class="globe-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"></circle><path class="land" d="M22,8 Q34,2 44,12 Q50,18 46,24 Q42,30 34,28 Q26,32 18,26 Q10,20 14,14 Q16,10 22,8 Z"></path><path class="land" d="M26,50 Q38,46 40,58 Q42,72 32,88 Q26,92 22,82 Q16,66 20,56 Q22,52 26,50 Z"></path><path class="land" d="M64,10 Q78,6 86,18 Q90,32 84,44 Q88,58 80,74 Q74,88 66,80 Q62,68 66,56 Q58,44 62,32 Q56,20 64,10 Z"></path></svg></span></a>
+  <ul>
+    <li><a href="/#/scholarships" class="page-link">Scholarship</a></li>
+    <li><a href="/#/alumni" class="page-link">Alumni</a></li>
+    <li><a href="/#/join" class="page-link">Join SAPA</a></li>
+    <li><a href="/#/advisors" class="cta">Meet a SAPA</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-hero">
+    <div class="eyebrow">Error 404</div>
+    <h1>We just rebuilt our website.</h1>
+    <p class="lede">Google has betrayed you by showing you a link that no longer exists. This issue should resolve itself in a few weeks. In the meantime please return to the homepage.</p>
+    <div class="buttons">
+      <a href="/" class="btn btn-primary">Back to the homepage</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="brand">UF SAPA<span class="dot">.</span></div>
+    </div>
+    <div>
+      <h4>UF International Center</h4>
+      <ul>
+        <li>1765 Stadium Road</li>
+        <li>170 Hub, PO Box 113225</li>
+        <li>Gainesville, FL 32611</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:ufsapa@gmail.com">ufsapa@gmail.com</a></li>
+        <li><a href="https://instagram.com/ufsapa" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 UF Study Abroad Peer Advisors</span>
+    <span>A student organization at the University of Florida</span>
+  </div>
+</footer>
+
+</body>
+</html>
