@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>UF SAPA — Study Abroad Peer Advisors</title>
-<meta name="description" content="University of Florida Study Abroad Peer Advisors. Student-to-student advising on programs, applications, finances, and life abroad." />
+<title>SAPA at UF</title>
+<meta name="description" content="Study Abroad Peer Advisors at the University of Florida. Student-to-student advising on programs, applications, finances, and life abroad." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -209,7 +209,7 @@
   }
   .hero h1 .accent { color: var(--uf-orange); font-style: normal; font-weight: 600; }
   .hero p.lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 36rem; margin-bottom: 2.5rem; }
-  .buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .buttons { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; }
   .btn {
     padding: 0.85rem 1.75rem; border-radius: 999px; font-weight: 600;
     text-decoration: none; font-size: 0.82rem; transition: all 0.2s;
@@ -220,6 +220,9 @@
   .btn-primary:hover { background: var(--uf-blue); transform: translateY(-2px); }
   .btn-ghost { background: transparent; color: var(--uf-blue); border: 2px solid var(--uf-blue); }
   .btn-ghost:hover { background: var(--uf-blue); color: white; }
+  .btn-disabled-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .btn-disabled { color: var(--ink-soft); border-color: var(--line); cursor: default; pointer-events: none; }
+  .btn-coming-soon { font-size: 0.72rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
 
   /* hero visual: collage of program cards */
   .hero-visual {
@@ -1189,11 +1192,10 @@
 <body>
 
 <nav class="site">
-  <a href="#/" class="brand" data-link>UF Study Abroad Peer Advisors<span class="brand-globe" id="brand-globe" aria-hidden="true"><svg class="globe-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"></circle><path class="land" d="M22,8 Q34,2 44,12 Q50,18 46,24 Q42,30 34,28 Q26,32 18,26 Q10,20 14,14 Q16,10 22,8 Z"></path><path class="land" d="M26,50 Q38,46 40,58 Q42,72 32,88 Q26,92 22,82 Q16,66 20,56 Q22,52 26,50 Z"></path><path class="land" d="M64,10 Q78,6 86,18 Q90,32 84,44 Q88,58 80,74 Q74,88 66,80 Q62,68 66,56 Q58,44 62,32 Q56,20 64,10 Z"></path></svg></span></a>
+  <a href="#/" class="brand" data-link>Study Abroad Peer Advisors at UF<span class="brand-globe" id="brand-globe" aria-hidden="true"><svg class="globe-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"></circle><path class="land" d="M22,8 Q34,2 44,12 Q50,18 46,24 Q42,30 34,28 Q26,32 18,26 Q10,20 14,14 Q16,10 22,8 Z"></path><path class="land" d="M26,50 Q38,46 40,58 Q42,72 32,88 Q26,92 22,82 Q16,66 20,56 Q22,52 26,50 Z"></path><path class="land" d="M64,10 Q78,6 86,18 Q90,32 84,44 Q88,58 80,74 Q74,88 66,80 Q62,68 66,56 Q58,44 62,32 Q56,20 64,10 Z"></path></svg></span></a>
   <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">☰</button>
   <ul id="nav-menu">
     <li><a href="#/scholarships" class="page-link" data-link data-page="scholarships">Scholarship</a></li>
-    <li><a href="#/alumni" class="page-link" data-link data-page="alumni">Alumni</a></li>
     <li><a href="#/join" class="page-link" data-link data-page="join">Join SAPA</a></li>
     <li><a href="#/advisors" class="cta" data-link data-page="advisors">Meet a SAPA</a></li>
   </ul>
@@ -1204,7 +1206,7 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="brand">UF SAPA<span class="dot">.</span></div>
+      <div class="brand">SAPA at UF<span class="dot">.</span></div>
     </div>
     <div>
       <h4>UF International Center</h4>
@@ -1223,7 +1225,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© <span id="year"></span> UF Study Abroad Peer Advisors</span>
+    <span>© <span id="year"></span> Study Abroad Peer Advisors at UF</span>
     <span>A student organization at the University of Florida</span>
   </div>
 </footer>
@@ -1374,7 +1376,7 @@ const pages = {
       <section class="home-visual-band">
         <div class="hvb-logo">
           <div class="hvb-inner">
-            <img class="hvb-logo-img" src="images/logo-sapa.png" alt="UF SAPA — Study Abroad Peer Advisors" />
+            <img class="hvb-logo-img" src="images/logo-sapa.png" alt="SAPA at UF — Study Abroad Peer Advisors" />
           </div>
         </div>
         <div class="hvb-photo">
@@ -1394,7 +1396,7 @@ const pages = {
           <div class="block-header whatwedo-header">
             <div class="eyebrow">New here? Start here.</div>
             <h2 class="whatwedo-h2">What we do.</h2>
-            <p>The University of Florida Study Abroad Peer Advisors (aka "SAPAs") are a group of students who have studied abroad during their time at UF and are now dedicated to sharing their experiences with peers. SAPAs offer a unique perspective on not only the study abroad application process, but also questions regarding academics abroad, travel logistics, and in-country experiences. They can help you with everything from flights, to packing, to how to select the perfect program! The SAPAs participate in a variety of UF Study Abroad events, including the biannual Study Abroad Fair. They also <a href="#/advisors" data-link style="color:var(--uf-orange); text-decoration:none; background:#FDEAE3; padding:0.05em 0.4em; border-radius:5px;">hold daily office hours</a> in the Hub, lead study abroad <a href="#info-sessions" onclick="event.preventDefault(); document.getElementById('info-sessions').scrollIntoView({behavior:'smooth'});" style="color:#2E7DD7; text-decoration:none; background:#E8F2FD; padding:0.05em 0.4em; border-radius:5px;">information sessions</a>, table on-campus, and host fun social events!</p>
+            <p>The Study Abroad Peer Advisors at the University of Florida (aka "SAPAs") are a group of students who have studied abroad during their time at UF and are now dedicated to sharing their experiences with peers. SAPAs offer a unique perspective on not only the study abroad application process, but also questions regarding academics abroad, travel logistics, and in-country experiences. They can help you with everything from flights, to packing, to how to select the perfect program! The SAPAs participate in a variety of UF Study Abroad events, including the biannual Study Abroad Fair. They also <a href="#/advisors" data-link style="color:var(--uf-orange); text-decoration:none; background:#FDEAE3; padding:0.05em 0.4em; border-radius:5px;">hold daily office hours</a> in the Hub, lead study abroad <a href="#info-sessions" onclick="event.preventDefault(); document.getElementById('info-sessions').scrollIntoView({behavior:'smooth'});" style="color:#2E7DD7; text-decoration:none; background:#E8F2FD; padding:0.05em 0.4em; border-radius:5px;">information sessions</a>, table on-campus, and host fun social events!</p>
             <p>Our goal is to help you explore study abroad and see what role it could play in your life. If you already have a program in mind and have a specific question please make an appointment with the <a href="${LINKS.appointment}" target="_blank" rel="noopener" style="color:#1E7A38; text-decoration:none; background:#E6F4EA; padding:0.05em 0.4em; border-radius:5px;">staff advisor</a> for the region or reach out to the email address listed on the application.</p>
           </div>
         </div>
@@ -1427,6 +1429,10 @@ const pages = {
           <p>Want a SAPA at your org's GBM or event? We're happy to bring the info session to you. Just email us a date and we'll coordinate.</p>
           <div class="buttons">
             <a href="mailto:${EMAIL}?subject=SAPA%20presentation%20request" class="btn btn-ghost">Request a presentation</a>
+            <div class="btn-disabled-wrap">
+              <span class="btn btn-ghost btn-disabled" aria-disabled="true">Info session calendar</span>
+              <span class="btn-coming-soon">Coming soon</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1648,6 +1654,21 @@ const pages = {
             <h2>Questions about applying?</h2>
             <p>Email <a href="mailto:${EMAIL}">${EMAIL}</a> or ask any current SAPA at office hours.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  calendar: () => `
+    <div class="page">
+      <div class="sch-hero" style="margin-top:4rem;">
+        <div class="sch-hero-photo">
+          <img src="images/info-session-badge.jpg" alt="A SAPA holding a button that says Ask me about studying abroad" />
+        </div>
+        <div class="sch-hero-content">
+          <h2>Info session calendar</h2>
+          <p>Every weekday office-hours slot at the International Center, who's holding it, and the program they studied on.</p>
+          <p>SAPAs are still signing up for their info session slots this cycle. Once everyone's picked a time, this page will show exactly who's holding office hours when, and which program they studied on — so check back soon!</p>
         </div>
       </div>
     </div>
