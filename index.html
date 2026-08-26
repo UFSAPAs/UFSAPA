@@ -1504,7 +1504,7 @@ const pages = {
       <section class="page-hero">
         <h1>Meet a SAPA</h1>
         <p>Click a pin on the map to filter to the SAPAs who studied there, then open a profile to see their program and how to reach them.</p>
-        <p>If you don't have a specific region or program in mind, you can attend any SAPA's office hours. They run from 9:35 AM to 3:50 PM on weekdays at the International Center.</p>
+        <p>If you don't have a specific region or program in mind, you can attend any SAPA's office hours. You can find us just outside the international center, which is located inside the Hub.</p>
       </section>
 
       <div class="map-wide">
@@ -2169,10 +2169,11 @@ function initNavGlobeIntro(){
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // phone-width visitors skip the whole rolling-globe intro (no room for the flight path,
-  // and the animation is really a desktop/tablet flourish) — just pulse the hamburger,
+  // anywhere the nav has already condensed into the hamburger menu (same breakpoint as the
+  // CSS, 1180px), skip the whole rolling-globe intro — there are no page links to fly between,
+  // and landing it on the hamburger read as a stray animation. Just pulse the hamburger instead,
   // no glow, so there's still a nudge toward the menu without the alert-badge look
-  if (window.innerWidth < 640) {
+  if (window.innerWidth < 1180) {
     if (mobileToggle && !reduced) mobileToggle.classList.add('nav-pulse');
     return;
   }
@@ -2193,10 +2194,7 @@ function initNavGlobeIntro(){
   }
   sessionStorage.setItem('sapaNavIntroPlayed', '1');
 
-  const isMobile = window.innerWidth < 1180;
-  const stops = isMobile
-    ? [mobileToggle].filter(Boolean)
-    : Array.from(nav.querySelectorAll('a.page-link')).concat(cta);
+  const stops = Array.from(nav.querySelectorAll('a.page-link')).concat(cta);
 
   if (!stops.length) { cta.classList.add('globe-glow'); return; }
 
@@ -2273,8 +2271,8 @@ function initNavGlobeIntro(){
     amps.push(clampAmp(10, p.y));
     squashFlags.push(true);
   });
-  if (!isMobile) {
-    // double-bounce in place on "Meet an Advisor" (second bounce a little smaller, like it's settling)
+  // double-bounce in place on "Meet an Advisor" (second bounce a little smaller, like it's settling)
+  {
     const p = aboveOf(lastStop);
     points.push(p);
     amps.push(clampAmp(6, p.y));
