@@ -824,15 +824,20 @@
 
   /* generic reference card (scholarship footer link) */
   .ref-card { max-width: 42rem; margin: 0 auto 4rem; padding: 0 2rem; }
-  .ref-card a.card {
+  .ref-card.ref-card-row { max-width: 62rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .ref-card.ref-card-row .card { flex: 1 1 260px; }
+  .ref-card .card {
     display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
     background: var(--uf-blue); color: white; border-radius: 14px; padding: 1.6rem 1.8rem;
     text-decoration: none; transition: transform 0.2s;
   }
   .ref-card a.card:hover { transform: translateY(-3px); }
-  .ref-card a.card .lead { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.2rem; }
-  .ref-card a.card .sub { opacity: 0.82; font-size: 0.9rem; }
-  .ref-card a.card .arrow { font-size: 1.4rem; opacity: 0.9; }
+  .ref-card .card .lead { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .ref-card .card .sub { opacity: 0.82; font-size: 0.9rem; }
+  .ref-card .card .arrow { font-size: 1.4rem; opacity: 0.9; }
+  .ref-card .card.card-disabled { background: var(--tag-bg); color: var(--ink-soft); cursor: default; }
+  .ref-card .card.card-disabled .lead { color: var(--ink-soft); }
+  .ref-card .card.card-disabled .arrow { opacity: 0.4; }
 
   /* single scholarship hero card */
   .sch-single { max-width: 52rem; margin: 3rem auto 0; padding: 0 2rem; }
@@ -1394,7 +1399,7 @@ const pages = {
             </video>
           </div>
           <div class="block-header whatwedo-header">
-            <div class="eyebrow">New here? Start here.</div>
+            <div class="eyebrow">New here?</div>
             <h2 class="whatwedo-h2">What we do.</h2>
             <p>The Study Abroad Peer Advisors at the University of Florida (aka "SAPAs") are a group of students who have studied abroad during their time at UF and are now dedicated to sharing their experiences with peers. SAPAs offer a unique perspective on not only the study abroad application process, but also questions regarding academics abroad, travel logistics, and in-country experiences. They can help you with everything from flights, to packing, to how to select the perfect program! The SAPAs participate in a variety of UF Study Abroad events, including the biannual Study Abroad Fair. They also <a href="#/advisors" data-link style="color:var(--uf-orange); text-decoration:none; background:#FDEAE3; padding:0.05em 0.4em; border-radius:5px;">hold daily office hours</a> in the Hub, lead study abroad <a href="#info-sessions" onclick="event.preventDefault(); document.getElementById('info-sessions').scrollIntoView({behavior:'smooth'});" style="color:#2E7DD7; text-decoration:none; background:#E8F2FD; padding:0.05em 0.4em; border-radius:5px;">information sessions</a>, table on-campus, and host fun social events!</p>
             <p>Our goal is to help you explore study abroad and see what role it could play in your life. If you already have a program in mind and have a specific question please make an appointment with the <a href="${LINKS.appointment}" target="_blank" rel="noopener" style="color:#1E7A38; text-decoration:none; background:#E6F4EA; padding:0.05em 0.4em; border-radius:5px;">staff advisor</a> for the region or reach out to the email address listed on the application.</p>
@@ -1445,12 +1450,12 @@ const pages = {
         <div class="events-list">
           <div class="event-row">
             <div class="when">Tue & Wed<br/>3–4 PM</div>
-            <div class="what"><h3>Study Abroad Info Session</h3><p>Weekly during Fall & Spring at the UF International Center. Led by SAPAs — program options, financing, and next steps.</p></div>
+            <div class="what"><h3>Study Abroad Info Session</h3><p>Weekly during Fall & Spring at the UF International Center.</p></div>
             <div class="tag2">Weekly</div>
           </div>
           <div class="event-row featured">
             <div class="when">Oct 6</div>
-            <div class="what"><h3>Fall Study Abroad Fair</h3><p>10 AM–3 PM in the Reitz Union Grand Ballroom. Meet program reps and SAPAs across dozens of destinations — financial aid, passport services, and more are on hand too. Free and open to all UF students.</p></div>
+            <div class="what"><h3>Fall Study Abroad Fair</h3><p>10 AM–3 PM in the Reitz Union Grand Ballroom. Meet program reps and SAPAs across dozens of destinations.</p></div>
             <div class="tag2">Each fall</div>
           </div>
           <div class="event-row">
@@ -1478,7 +1483,6 @@ const pages = {
       <div class="prep">
         <div class="prep-inner">
           <h2>Three things worth doing first.</h2>
-          <p>You'll get more out of a chat with us if you've looked at these first.</p>
           <div class="prep-steps">
             <div class="prep-step">
               <div class="k">Start here</div>
@@ -1563,15 +1567,22 @@ const pages = {
         </div>
         <div class="sch-hero-content">
           <p>SAPA offers scholarships ranging from <b>$500 to $1,000</b> for UF students studying abroad who demonstrate financial need. We're looking for applicants who show a passion for study abroad, a drive for personal growth, and a genuine interest in immersing themselves in their host country's culture and community. The scholarship is funded and reviewed by SAPA under the UF International Center.</p>
-          <p><b>This cycle:</b> applications for the Spring 2027 scholarship aren't open yet. Follow <a href="https://instagram.com/ufsapa" target="_blank" rel="noopener" style="color:var(--uf-blue);">@ufsapa</a> or check back here for updates.</p>
-          <p><b>Who can apply:</b> UF students in good standing (3.0+ GPA) on a study abroad program at least 4 months long during the Spring semester, taking 12 or more credit hours abroad (any UF online courses taken at the same time don't count toward that). Current SAPAs aren't eligible to apply.</p>
-          <p><b>What to submit:</b> a screenshot of your unofficial transcript from ONE.UF, a brief statement of financial need, a letter of recommendation, and an essay on your interest in study abroad and sharing that experience with others.</p>
-          <p style="margin-top:1.5rem;">Questions about the SAPA Scholarship? Email <a href="mailto:${EMAIL}?subject=SAPA%20Scholarship" style="color:var(--uf-blue);">${EMAIL}</a> or DM us on <a href="https://instagram.com/ufsapa" target="_blank" rel="noopener" style="color:var(--uf-blue);">Instagram</a>. The UF International Center also runs scholarship writing workshops if you'd like help with your application.</p>
+          <p><b>This cycle:</b> Applications for the Spring 2027 scholarship open Friday, August 28th. All materials must be submitted before the deadline on <b>Friday, November 6th at 11:59 PM</b>.</p>
+          <p><b>Who can apply:</b> UF students in good standing (3.0+ GPA) who have been accepted to, or have a pending application for, a UFIC-approved study abroad program for the Spring 2027 semester. Current SAPAs aren't eligible to apply.</p>
+          <p><b>What to submit:</b> The application involves a statement of financial need, unofficial transcript, letter of recommendation, and an essay. Final applicants are selected solely based on the answers submitted in the application. If we suspect that you have used an LLM to produce written content for your application you will be disqualified.</p>
+          <p style="margin-top:1.5rem;">Questions about the SAPA Scholarship? Email <a href="mailto:${EMAIL}?subject=SAPA%20Scholarship" style="color:var(--uf-blue);">${EMAIL}</a>.</p>
         </div>
       </div>
 
       <div style="height:3rem;"></div>
-      <div class="ref-card">
+      <div class="ref-card ref-card-row">
+        <div class="card card-disabled" aria-disabled="true">
+          <div>
+            <div class="lead">Apply to the SAPA Scholarship</div>
+            <div class="sub">Opening this Friday</div>
+          </div>
+          <div class="arrow">→</div>
+        </div>
         <a class="card" href="${LINKS.sch}" target="_blank" rel="noopener">
           <div>
             <div class="lead">Looking for more funding?</div>
