@@ -838,6 +838,15 @@
   .ref-card .card.card-disabled { background: var(--tag-bg); color: var(--ink-soft); cursor: default; }
   .ref-card .card.card-disabled .lead { color: var(--ink-soft); }
   .ref-card .card.card-disabled .arrow { opacity: 0.4; }
+  .ref-card .card.card-glow { animation: card-glow-pulse 2.4s ease-in-out infinite; }
+  .ref-card .card.card-glow:hover { animation-play-state: paused; }
+  @keyframes card-glow-pulse {
+    0%, 100% { box-shadow: 0 0 16px 4px rgba(250,70,22,0.45), 0 0 32px 14px rgba(250,70,22,0.16); }
+    50% { box-shadow: 0 0 22px 7px rgba(250,70,22,0.6), 0 0 40px 18px rgba(250,70,22,0.22); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ref-card .card.card-glow { animation: none; }
+  }
 
   /* single scholarship hero card */
   .sch-single { max-width: 52rem; margin: 3rem auto 0; padding: 0 2rem; }
@@ -1347,7 +1356,7 @@ const pages = {
     <div class="page">
       <div class="postit-alert" role="note">
         <button class="postit-close" aria-label="Dismiss" onclick="this.closest('.postit-alert').classList.add('postit-dismissed')">&times;</button>
-        <a href="#/join" data-link>Applications<br>open now!</a>
+        <a href="#/join" data-link>Applications<br>close tonight!</a>
       </div>
       <section class="home-visual-band">
         <div class="hvb-logo">
@@ -1546,13 +1555,13 @@ const pages = {
 
       <div style="height:3rem;"></div>
       <div class="ref-card ref-card-row">
-        <div class="card card-disabled" aria-disabled="true">
+        <a class="card card-glow" href="${LINKS.scholarshipApply}" target="_blank" rel="noopener">
           <div>
             <div class="lead">Apply to the SAPA Scholarship</div>
-            <div class="sub">Opening this Friday</div>
+            <div class="sub">Closes November 6th at 11:59 PM</div>
           </div>
           <div class="arrow">→</div>
-        </div>
+        </a>
         <a class="card" href="${LINKS.sch}" target="_blank" rel="noopener">
           <div>
             <div class="lead">Looking for more funding?</div>
