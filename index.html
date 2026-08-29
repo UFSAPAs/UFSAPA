@@ -162,7 +162,7 @@
   /* ---------- post-it alert (home page only) ---------- */
   .postit-alert {
     position: fixed; top: 100px; right: 2rem; z-index: 90;
-    width: 210px; padding: 1.5rem 1.5rem 1.75rem;
+    width: 320px; padding: 1.5rem 1.5rem 1.75rem;
     background: #FFE566; box-shadow: 5px 9px 20px rgba(0,0,0,0.28);
     transform: rotate(-5deg); transition: transform 0.2s;
     animation: postit-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
@@ -171,7 +171,7 @@
   .postit-alert:hover { transform: rotate(-1deg) scale(1.04); }
   .postit-alert.postit-dismissed { display: none; }
   .postit-alert a {
-    display: block; font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.5rem;
+    display: block; font-family: 'Caveat', cursive; font-weight: 700; font-size: 2.1rem;
     line-height: 1.15; color: #2b2500; text-decoration: none;
   }
   .postit-close {
@@ -184,8 +184,8 @@
     100% { opacity: 1; transform: rotate(-5deg) scale(1); }
   }
   @media (max-width: 640px){
-    .postit-alert { top: auto; bottom: 1.25rem; right: 1.25rem; width: 170px; padding: 1.2rem 1.2rem 1.4rem; }
-    .postit-alert a { font-size: 2rem; }
+    .postit-alert { top: auto; bottom: 1.25rem; right: 1.25rem; width: 230px; padding: 1.2rem 1.2rem 1.4rem; }
+    .postit-alert a { font-size: 1.7rem; }
   }
   @media (prefers-reduced-motion: reduce){
     .postit-alert { animation: none; }
@@ -605,20 +605,12 @@
   .eligibility-panel ul { margin: 0 0 0 1.25rem; }
   .eligibility-panel li { margin-bottom: 0.65rem; color: var(--ink-soft); }
   .eligibility-panel a { color: var(--uf-blue); text-decoration: underline; text-underline-offset: 3px; }
-  .eligibility-panel-apply a.btn { color: white; text-decoration: none; }
-  /* fills whatever leftover height the panel has (from matching the taller process
-     column) with an apply button instead of leaving it as bare padding */
-  .eligibility-panel-apply {
-    flex: 1; min-height: 3rem; display: flex; align-items: center; justify-content: center;
-    padding: 1rem 0;
-  }
   .eligibility-panel-divider {
     padding-top: 1.75rem; border-top: 1px solid var(--line-strong);
   }
   .eligibility-panel-divider p { margin-bottom: 0; }
   @media (max-width: 900px) {
     .join-columns { grid-template-columns: 1fr; }
-    .eligibility-panel-apply { flex: none; min-height: 0; }
   }
 
 
@@ -822,30 +814,30 @@
   .alumni-card .country { font-family: 'Inter', sans-serif; font-weight: 400; color: var(--ink-soft); font-size: 0.82rem; margin-top: 0.55rem; }
   .alumni-empty { grid-column: 1 / -1; text-align: center; color: var(--ink-soft); font-style: italic; padding: 2.5rem 1rem; }
 
-  /* generic reference card (scholarship footer link) */
+  /* generic reference card (scholarship footer link, join interest form, etc.) */
   .ref-card { max-width: 42rem; margin: 0 auto 4rem; padding: 0 2rem; }
   .ref-card.ref-card-row { max-width: 62rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .ref-card.ref-card-row .card { flex: 1 1 260px; }
-  .ref-card .card {
+  .card {
     display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
     background: var(--uf-blue); color: white; border-radius: 14px; padding: 1.6rem 1.8rem;
     text-decoration: none; transition: transform 0.2s;
   }
-  .ref-card a.card:hover { transform: translateY(-3px); }
-  .ref-card .card .lead { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.2rem; }
-  .ref-card .card .sub { opacity: 0.82; font-size: 0.9rem; }
-  .ref-card .card .arrow { font-size: 1.4rem; opacity: 0.9; }
-  .ref-card .card.card-disabled { background: var(--tag-bg); color: var(--ink-soft); cursor: default; }
-  .ref-card .card.card-disabled .lead { color: var(--ink-soft); }
-  .ref-card .card.card-disabled .arrow { opacity: 0.4; }
-  .ref-card .card.card-glow { animation: card-glow-pulse 2.4s ease-in-out infinite; }
-  .ref-card .card.card-glow:hover { animation-play-state: paused; }
+  a.card:hover { transform: translateY(-3px); }
+  .card .lead { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .card .sub { opacity: 0.82; font-size: 0.9rem; }
+  .card .arrow { font-size: 1.4rem; opacity: 0.9; }
+  .card.card-disabled { background: var(--tag-bg); color: var(--ink-soft); cursor: default; }
+  .card.card-disabled .lead { color: var(--ink-soft); }
+  .card.card-disabled .arrow { opacity: 0.4; }
+  .card.card-glow { animation: card-glow-pulse 2.4s ease-in-out infinite; }
+  .card.card-glow:hover { animation-play-state: paused; }
   @keyframes card-glow-pulse {
     0%, 100% { box-shadow: 0 0 16px 4px rgba(250,70,22,0.45), 0 0 32px 14px rgba(250,70,22,0.16); }
     50% { box-shadow: 0 0 22px 7px rgba(250,70,22,0.6), 0 0 40px 18px rgba(250,70,22,0.22); }
   }
   @media (prefers-reduced-motion: reduce){
-    .ref-card .card.card-glow { animation: none; }
+    .card.card-glow { animation: none; }
   }
 
   /* single scholarship hero card */
@@ -1356,7 +1348,7 @@ const pages = {
     <div class="page">
       <div class="postit-alert" role="note">
         <button class="postit-close" aria-label="Dismiss" onclick="this.closest('.postit-alert').classList.add('postit-dismissed')">&times;</button>
-        <a href="#/join" data-link>Applications<br>close tonight!</a>
+        <a href="https://calendar.ufl.edu/internationalcenter/event/54857-study-abroad-fair" target="_blank" rel="noopener">The Study Abroad Fair<br>is October 6th!</a>
       </div>
       <section class="home-visual-band">
         <div class="hvb-logo">
@@ -1422,7 +1414,7 @@ const pages = {
         </div>
       </section>
 
-      <section class="events">
+      <section class="events" id="events">
         <div class="block-header">
           <div class="eyebrow">On the calendar</div>
           <h2>Study-abroad <span class="italic">events</span>.</h2>
@@ -1435,7 +1427,7 @@ const pages = {
           </div>
           <div class="event-row featured">
             <div class="when">Oct 6</div>
-            <div class="what"><h3>Fall Study Abroad Fair</h3><p>10 AM–3 PM in the Reitz Union Grand Ballroom. Meet program reps and SAPAs across dozens of destinations.</p></div>
+            <div class="what"><h3>Fall Study Abroad Fair</h3><p>10 AM–3 PM in the Reitz Union Grand Ballroom. <a href="https://calendar.ufl.edu/internationalcenter/event/54857-study-abroad-fair" target="_blank" rel="noopener">Learn more</a></p></div>
             <div class="tag2">Each fall</div>
           </div>
           <div class="event-row">
@@ -1609,14 +1601,15 @@ const pages = {
         </div>
         <div class="alumni-hero-text">
           <h1>Think you could be <span class="italic">a SAPA</span>?</h1>
-          <p>If you've studied abroad through UF and want to help the next group of Gators do the same, we recruit new SAPAs a few times a year. <span class="cycle-highlight"><b>Our Fall 2026 cycle is open now through Friday, August 28th.</b></span></p>
+          <p><b>Our Fall application cycle has closed.</b> If you are interested in applying to be a SAPA in the Spring please fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdQarDgQAE3ZW2zl1C6C6e3mn3v29ZYGuDgfUjdKyDMzvVing/viewform?usp=header" target="_blank" rel="noopener" style="color:var(--uf-orange); text-decoration:none; background:#FDEAE3; padding:0.05em 0.4em; border-radius:5px;">Membership Interest Form</a> and we will send you a reminder when the application opens this winter.</p>
         </div>
       </section>
+
       <div class="join-columns">
         <div class="timeline">
           <div class="timeline-step">
             <div class="step-num">01</div>
-            <div><h3>Applications open</h3><p>For the Fall 2026 cycle, applications opened <b>Monday, August 10th</b> and close at <b>11:59PM on Friday, August 28th</b>. Watch our Instagram <a href="https://instagram.com/ufsapa" target="_blank" rel="noopener">@ufsapa</a> for future cycles.</p></div>
+            <div><h3>Applications open</h3><p>For the Fall 2026 cycle, applications opened Monday, August 10th and closed at 11:59PM on Friday, August 28th. Watch our Instagram <a href="https://instagram.com/ufsapa" target="_blank" rel="noopener">@ufsapa</a> for future cycles, or fill out the interest form above.</p></div>
           </div>
           <div class="timeline-step">
             <div class="step-num">02</div>
@@ -1629,7 +1622,6 @@ const pages = {
         </div>
         <div class="eligibility-panel">
           <h2>Eligibility requirements</h2>
-          <p>To apply for the Fall 2026 cycle, you must:</p>
           <ul>
             <li>Be a registered student at UF who has completed a study abroad program while pursuing your UF degree</li>
             <li>Have a minimum 3.0 cumulative UF GPA</li>
@@ -1637,9 +1629,6 @@ const pages = {
             <li>Be ready to participate in SAPA activities for approximately 2–4 hours a week (office hours, Thursday evening GBMs, outreach events, etc.)</li>
             <li>Be able to attend our bi-weekly GBMs on Thursday nights</li>
           </ul>
-          <div class="eligibility-panel-apply">
-            <a href="${LINKS.apply}" class="btn btn-primary" target="_blank" rel="noopener">Apply now →</a>
-          </div>
           <div class="eligibility-panel-divider">
             <h2>Questions about applying?</h2>
             <p>Email <a href="mailto:${EMAIL}">${EMAIL}</a> or ask any current SAPA at office hours.</p>
