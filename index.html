@@ -1083,7 +1083,7 @@
   .whatwedo-layout { display: flex; align-items: center; gap: 3rem; }
   .whatwedo-video { flex: 1 1 440px; max-width: 440px; }
   .whatwedo-video video {
-    width: 100%; aspect-ratio: 608 / 1080; object-fit: cover; display: block;
+    width: 100%; aspect-ratio: 9 / 16; object-fit: cover; display: block;
     border-radius: 24px; box-shadow: 0 40px 80px -24px rgba(0,33,165,0.42); background: var(--ink);
     pointer-events: none;
   }
@@ -1363,8 +1363,8 @@ const pages = {
       <section class="block whatwedo">
         <div class="whatwedo-layout">
           <div class="whatwedo-video">
-            <video class="whatwedo-video-el" autoplay loop muted playsinline disablePictureInPicture preload="auto">
-              <source src="video/whatwedo.mp4" type="video/mp4">
+            <video class="whatwedo-video-el" muted playsinline disablePictureInPicture preload="auto">
+              <source src="video/sapa-video-2026.mp4" type="video/mp4">
             </video>
           </div>
           <div class="block-header whatwedo-header">
@@ -2055,12 +2055,17 @@ function selectCountries(selection){
 function initHomeVideo(){
   const vid = document.querySelector('.whatwedo-video-el');
   if (!vid) return;
+  vid.muted = true;
+  // plays once when scrolled into view, pauses when scrolled away, and stops on the last frame
+  // when it finishes (no loop)
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      if (vid.ended) return;
       if (entry.isIntersecting) { vid.play().catch(() => {}); }
       else { vid.pause(); }
     });
   }, { threshold: 0.5 });
+  vid.addEventListener('ended', () => io.disconnect(), { once: true });
   io.observe(vid);
 }
 
