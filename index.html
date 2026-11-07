@@ -827,7 +827,8 @@
   .card .lead { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.2rem; }
   .card .sub { opacity: 0.82; font-size: 0.9rem; }
   .card .arrow { font-size: 1.4rem; opacity: 0.9; }
-  .card.card-disabled { background: var(--tag-bg); color: var(--ink-soft); cursor: default; }
+  .card.card-disabled { background: var(--tag-bg); color: var(--ink-soft); cursor: default;
+    box-shadow: 0 0 16px 4px rgba(110,110,120,0.35), 0 0 32px 14px rgba(110,110,120,0.12); }
   .card.card-disabled .lead { color: var(--ink-soft); }
   .card.card-disabled .arrow { opacity: 0.4; }
   .card.card-glow { animation: card-glow-pulse 2.4s ease-in-out infinite; }
@@ -1533,8 +1534,8 @@ const pages = {
         </div>
         <div class="sch-hero-content">
           <p>SAPA offers scholarships ranging from <b>$500 to $1,000</b> for UF students studying abroad who demonstrate financial need. We're looking for applicants who show a passion for study abroad, a drive for personal growth, and a genuine interest in immersing themselves in their host country's culture and community. The scholarship is funded and reviewed by SAPA under the UF International Center.</p>
-          <p><b>This cycle:</b> Applications for the Spring 2027 scholarship open Friday, August 28th. All materials must be submitted before the deadline on <b>Friday, November 6th at 11:59 PM</b>.</p>
-          <p><b>Who can apply:</b> UF students in good standing (3.0+ GPA) who have been accepted to, or have a pending application for, a UFIC-approved study abroad program for the Spring 2027 semester. Current SAPAs aren't eligible to apply.</p>
+          <p><b>Next cycle:</b> Applications for the Summer/Fall 2027 scholarship open Friday, January 15th. All materials must be submitted before the deadline on <b>Friday, March 12th</b>.</p>
+          <p><b>Who can apply:</b> UF students in good standing (3.0+ GPA) who have been accepted to, or have a pending application for, a UFIC-approved study abroad program for Summer or Fall 2027. Current SAPAs aren't eligible to apply.</p>
           <p><b>What to submit:</b> The application involves a statement of financial need, unofficial transcript, letter of recommendation, and an essay. Final applicants are selected solely based on the answers submitted in the application. If we suspect that you have used an LLM to produce written content for your application you will be disqualified.</p>
           <p style="margin-top:1.5rem;">Questions about the SAPA Scholarship? Email <a href="mailto:${EMAIL}?subject=SAPA%20Scholarship" style="color:var(--uf-blue);">${EMAIL}</a>.</p>
         </div>
@@ -1542,13 +1543,12 @@ const pages = {
 
       <div style="height:3rem;"></div>
       <div class="ref-card ref-card-row">
-        <a class="card card-glow" href="${LINKS.scholarshipApply}" target="_blank" rel="noopener">
+        <div class="card card-disabled" aria-disabled="true">
           <div>
-            <div class="lead">Apply to the SAPA Scholarship</div>
-            <div class="sub">Closes November 6th at 11:59 PM</div>
+            <div class="lead">Applications to the Spring SAPA Scholarship are currently closed.</div>
+            <div class="sub">The summer/fall scholarship opens January 15th and closes March 12th</div>
           </div>
-          <div class="arrow">→</div>
-        </a>
+        </div>
         <a class="card" href="${LINKS.sch}" target="_blank" rel="noopener">
           <div>
             <div class="lead">Looking for more funding?</div>
